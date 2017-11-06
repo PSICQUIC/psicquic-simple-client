@@ -10,22 +10,42 @@
     <name>PSI :: PSICQUIC Simple Client</name>
 
     <scm>
-        <connection>scm:svn:https://psicquic.googlecode.com/svn/trunk/psicquic-simple-client</connection>
-        <developerConnection>scm:svn:https://psicquic.googlecode.com/svn/trunk/psicquic-simple-client</developerConnection>
-        <url>http://code.google.com/p/psicquic/source/browse/#svn/trunk/psicquic-simple-client</url>
+        <connection>scm:git:https://github.com/PSICQUIC/psicquic-simple-client</connection>
+        <developerConnection>scm:git:https://github.com/PSICQUIC/psicquic-simple-client</developerConnection>
+        <url>https://github.com/PSICQUIC/psicquic-simple-client</url>
+        <tag>HEAD</tag>
     </scm>
 
     <build>
-        <finalName>${artifactId}-${version}</finalName>
-
-         <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-
+        <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
+            <plugin>
+                <!--mvn jgitflow:release-start -Dgit.user=xxxx -Dgit.password=xxxx-->
+                <!--mvn jgitflow:release-finish -Dmaven.javadoc.skip=true -Dgit.user=xxxx -Dgit.password=xxxx-->
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0-m5.1</version>
+                <configuration>
+                    <flowInitContext>
+                        <masterBranchName>master</masterBranchName>
+                        <developBranchName>develop</developBranchName>
+                        <featureBranchPrefix>feature-</featureBranchPrefix>
+                        <releaseBranchPrefix>release-</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+                        <versionTagPrefix>${project.artifactId}-</versionTagPrefix>
+                    </flowInitContext>
+                    <!-- see goals wiki page for configuration options -->
+                    <!--Whether to allow untracked files when checking if the working tree is clean.-->
+                    <allowUntracked>true</allowUntracked>
+                    <username>${git.user}</username>
+                    <password>${git.password}</password>
+                    <pullMaster>true</pullMaster>
+                    <pullDevelop>true</pullDevelop>
+                    <pushReleases>true</pushReleases>
+                    <pushHotfixes>true</pushHotfixes>
+                    <pushFeatures>true</pushFeatures>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
@@ -35,6 +55,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>attach-source</id>
@@ -57,26 +78,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.3</version>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <attach>false</attach>
-                    <descriptors>
-                        <descriptor>src/main/assembly/bin-with-dependencies.xml</descriptor>
-                    </descriptors>
-                </configuration>
-            </plugin>
-
         </plugins>
     </build>
 
@@ -89,39 +90,39 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Examples -->
-        <dependency>
-            <groupId>psidev.psi.mi.jami</groupId>
-            <artifactId>jami-core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
+        <!-- For the examples -->
         <dependency>
             <groupId>psidev.psi.mi.jami</groupId>
             <artifactId>jami-mitab</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>3.0.12</version>
         </dependency>
     </dependencies>
 
-   <distributionManagement>
-        <repository>
-            <id>ebi-repo</id>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo</url>
-        </repository>
-
-        <snapshotRepository>
-            <id>ebi-repo-snapshots</id>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo-snapshots</url>
-        </snapshotRepository>
-
-    </distributionManagement>
-
     <repositories>
         <repository>
-            <id>nexus</id>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/groups/public/</url>
+            <id>nexus-ebi-release-repo</id>
+            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo/</url>
+        </repository>
+        <repository>
+            <id>nexus-ebi-snapshot-repo</id>
+            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-snapshots/</url>
         </repository>
     </repositories>
 
-
+    <distributionManagement>
+        <!-- EBI repo -->
+        <repository>
+            <id>pst-release</id>
+            <name>EBI Nexus Repository</name>
+            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-release</url>
+        </repository>
+        <!-- EBI SNAPSHOT repo -->
+        <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>pst-snapshots</id>
+            <name>EBI Nexus Snapshots Repository</name>
+            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
