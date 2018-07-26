@@ -15,7 +15,6 @@
  */
 package org.hupo.psi.mi.psicquic.wsclient;
 
-import org.hupo.psi.mi.psicquic.wsclient.PsicquicSimpleClient;
 import psidev.psi.mi.jami.binary.BinaryInteraction;
 import psidev.psi.mi.jami.tab.io.parser.BinaryLineParser;
 import psidev.psi.mi.jami.tab.io.parser.ParseException;
@@ -26,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Example showing the use of the psimitab library to create an object model from the results.
+ * Example showing the use of the jami library to create an object model from the results.
  *
  * @author Bruno Aranda (baranda@ebi.ac.uk)
  * @version $Id$
