@@ -30,6 +30,7 @@ public class PsicquicSimpleClient {
     public static final String MITAB25 = "tab25";
     public static final String MITAB26 = "tab26";
     public static final String MITAB27 = "tab27";
+    public static final String MITAB28 = "tab28";
     public static final String XGMML = "xgmml";
     public static final String BIOPAX = "biopax";
     public static final String BIOPAX_L2 = "biopax-L2";
