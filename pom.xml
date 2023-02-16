@@ -5,7 +5,7 @@
     <artifactId>psicquic-simple-client</artifactId>
     <packaging>jar</packaging>
 
-    <version>1.5.0</version>
+    <version>1.5.1-SNAPSHOT</version>
 
     <name>PSI :: PSICQUIC Simple Client</name>
 
@@ -18,7 +18,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jami.version>3.3.0</jami.version>
+        <jami.version>3.3.1-SNAPSHOT</jami.version>
         <junit.version>4.13.2</junit.version>
     </properties>
 
