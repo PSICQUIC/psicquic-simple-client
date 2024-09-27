@@ -5,7 +5,7 @@
     <artifactId>psicquic-simple-client</artifactId>
     <packaging>jar</packaging>
 
-    <version>1.5.2</version>
+    <version>1.5.3</version>
 
     <name>PSI :: PSICQUIC Simple Client</name>
 
@@ -18,7 +18,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jami.version>3.5.0</jami.version>
+        <jami.version>3.6.0</jami.version>
         <junit.version>4.13.2</junit.version>
     </properties>
 
@@ -120,10 +120,6 @@
     </dependencies>
 
     <repositories>
-        <repository>
-            <id>nexus-ebi-repo-old</id>
-            <url>https://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/</url>
-        </repository>
         <repository>
             <id>nexus-ebi-release-repo</id>
             <url>https://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo/</url>
